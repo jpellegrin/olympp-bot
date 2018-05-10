@@ -7,8 +7,8 @@ import slackbot.feed.utils.news.Article;
 
 public class ChannelRetriever implements InformationsRetriever<Article, Channel> {
 
-	@Override
 	public List<Article> retrieveInformations(Channel source) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

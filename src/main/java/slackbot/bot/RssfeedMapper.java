@@ -6,7 +6,6 @@ import slackbot.feed.utils.mappers.ChannelMapper;
 
 public class RssfeedMapper implements ChannelMapper<Rssfeed> {
 
-	@Override
 	public Channel toChannel(Rssfeed rssfeed) {
 		return null;
 	}

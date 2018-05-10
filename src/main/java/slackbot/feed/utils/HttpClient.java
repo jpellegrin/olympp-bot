@@ -1,8 +1,13 @@
 package slackbot.feed.utils;
 
+import java.util.Map;
+
 public class HttpClient {
 
-	public String get(String url) {
+	public final String RETURN_CODE = "return_code";
+	public final String RETURN_PAYLOAD = "return_payload";
+
+	public Map<String, String> get(String url) {
 		return null;
 	}
 

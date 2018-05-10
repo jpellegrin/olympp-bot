@@ -6,7 +6,6 @@ import slackbot.feed.utils.news.SlackMessage;
 
 public class SlackMapper implements SlackMessageMapper<Article> {
 
-	@Override
 	public SlackMessage toSlackMessage(Article t) {
 		return null;
 	}
