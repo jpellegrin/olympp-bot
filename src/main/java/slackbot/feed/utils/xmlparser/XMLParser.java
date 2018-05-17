@@ -1,4 +1,4 @@
-package slackbot.feed.utils;
+package slackbot.feed.utils.xmlparser;
 
 import java.io.StringReader;
 
