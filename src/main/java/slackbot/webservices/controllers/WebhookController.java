@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import slackbot.data.jpa.model.Rssfeed;
-import slackbot.data.jpa.repositories.RssfeedRepository;
+import slackbot.data.jpa.model.Webhook;
+import slackbot.data.jpa.repositories.WebhookRepository;
 
 @RestController
-@RequestMapping(path = "/slackbot/rssfeed")
-public class RssfeedController {
+@RequestMapping(path = "/slackbot/webhook")
+public class WebhookController {
 
 	@Autowired
-	private RssfeedRepository rssfeedRepository;
+	private WebhookRepository webhookRepository;
 
 	@GetMapping("/add")
 	public @ResponseBody String create(@RequestParam String name) {
 
-		Rssfeed rssfeed = new Rssfeed();
-		rssfeed.setTitle("title test");
-		rssfeed.setRssUrl("urlTest");
-
-		// rssfeedRepository.save(rssfeed);
+		Webhook webhook = new Webhook();
+		webhook.setTitle("mentoring_vincent");
+		webhook.setUrl("https://hooks.slack.com/services/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");
+		// webhookRepository.save(webhook);
 
 		return "OK";
 	}
@@ -36,8 +36,8 @@ public class RssfeedController {
 	}
 
 	@GetMapping("/list")
-	public @ResponseBody Iterable<Rssfeed> list() {
-		return rssfeedRepository.findAll();
+	public @ResponseBody Iterable<Webhook> list() {
+		return webhookRepository.findAll();
 	}
 
 }

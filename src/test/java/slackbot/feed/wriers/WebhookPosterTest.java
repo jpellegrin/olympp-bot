@@ -8,13 +8,14 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import slackbot.feed.utils.HttpClient;
 import slackbot.feed.utils.news.SlackMessage;
@@ -55,16 +56,14 @@ public class WebhookPosterTest {
 
 	@Test
 	public void postTest() {
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.put("text", description);
-			jsonObject.put("channel", link);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectNode objectNode = objectMapper.createObjectNode();
+		objectNode.put("text", description);
+		objectNode.put("channel", link);
 
 		try {
-			when(httpClient.post(link, jsonObject.toString())).thenReturn(httpClient_result);
+			when(httpClient.post(link, objectNode.toString())).thenReturn(httpClient_result);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

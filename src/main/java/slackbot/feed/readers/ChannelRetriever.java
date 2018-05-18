@@ -16,7 +16,7 @@ import slackbot.feed.utils.xmlparser.XMLParser;
 @Component
 public class ChannelRetriever implements InformationsRetriever<Article, String> {
 
-	@Autowired
+	// @Autowired
 	private XMLParser<Channel> xmlParser;
 
 	@Autowired
@@ -32,6 +32,10 @@ public class ChannelRetriever implements InformationsRetriever<Article, String> 
 		Map<String, String> content = httpClient.get(source);
 
 		if (content.get(HttpClient.RETURN_CODE) == "200") {
+			// TODO
+			if (xmlParser == null) {
+				xmlParser = new XMLParser<>(Channel.class);
+			}
 			Channel channel = xmlParser.parse(content.get(HttpClient.RETURN_PAYLOAD));
 			articles = channel.getArticles();
 		}

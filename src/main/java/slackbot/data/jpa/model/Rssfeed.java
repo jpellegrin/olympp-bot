@@ -76,4 +76,15 @@ public class Rssfeed {
 		this.slackChannels = slackChannels;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("Rssfeed id:" + id + "\n");
+		sb.append("		title :" + title + "\n");
+		sb.append("		rssUrl :" + rssUrl + "\n");
+		sb.append("		lastArticleDate :" + lastArticleDate + "\n");
+		sb.append("		lastArticleGuid :" + lastArticleGuid + "\n");
+		sb.append("		slackChannels :" + slackChannels + "\n");
+		return sb.toString();
+	}
+
 }

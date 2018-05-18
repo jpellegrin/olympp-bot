@@ -55,4 +55,17 @@ public class Article extends News {
 		this.comments = comments;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("article id:" + guid + "\n");
+		sb.append("		title :" + getTitle() + "\n");
+		sb.append("		description :" + getDescription() + "\n");
+		sb.append("		link :" + getLink() + "\n");
+		sb.append("		author :" + author + "\n");
+		sb.append("		categpry :" + category + "\n");
+		sb.append("		comments :" + comments + "\n");
+		sb.append("		pubDate :" + pubDate + "\n");
+		return sb.toString();
+	}
+
 }

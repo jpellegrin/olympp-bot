@@ -3,10 +3,11 @@ package slackbot.feed.writers;
 import java.net.MalformedURLException;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import slackbot.feed.utils.HttpClient;
 import slackbot.feed.utils.news.SlackMessage;
@@ -27,17 +28,12 @@ public class WebhookPoster implements InformationsPoster<String, SlackMessage> {
 
 		Integer returnValue = 500;
 
-		JSONObject jsonPayload = new JSONObject();
-		try {
-			jsonPayload.put("text", news.getDescription());
-			jsonPayload.put("channel", news.getLink());
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode objectNode = mapper.createObjectNode();
+		objectNode.put("text", news.getDescription());
+		objectNode.put("channel", news.getLink());
 
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-
-		Map<String, String> content = httpClient.post(cible, jsonPayload.toString());
-		// System.out.println(content.toString());
+		Map<String, String> content = httpClient.post(cible, objectNode.toString());
 		returnValue = Integer.parseInt(content.get(HttpClient.RETURN_CODE));
 
 		return returnValue;
